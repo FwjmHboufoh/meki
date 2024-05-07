@@ -6,7 +6,7 @@
 if true then
     function skip()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
-    logToConsole("`b[`2TOOLS`b] `4TDUARMEMEK")
+    logToConsole("`b[`2SKIPPING MISSION`b] `4DUAR MEMEK")
     end
     
     function Drone()
