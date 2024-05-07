@@ -4,6 +4,11 @@
 
 
 if true then
+    function skip()
+    sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
+    logToConsole("`b[`2TOOLS`b] `4TDUARMEMEK")
+    end
+    
     function Drone()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6532")
     logToConsole("`b[`2TOOLS`b] `4Tactical Drone")
@@ -96,7 +101,7 @@ if true then
         "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Data") .. " Data"
     )
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSet a Course") then
@@ -160,7 +165,7 @@ if true then
     logToConsole("`b[`9MISSION`b] `6One Angry Ship")
     end
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wStarachnid Attack") then
@@ -251,7 +256,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Life Pod")
     end
-    Teleporter()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wBoarding Party") then
@@ -297,7 +302,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Experimental Salvage")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wDark Ship") then
@@ -328,7 +333,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Dark Ship")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`w(%w+) Hunt") then
@@ -361,7 +366,7 @@ if true then
         "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Hunt") .. " Hunt"
     )
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wWindy Days") then
@@ -388,7 +393,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Windy Days")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wAncient Temple") then
@@ -473,7 +478,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Miner Rescue")
     end
-    Gala()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wHunter and Prey") then
@@ -504,7 +509,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Hunter and Prey")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wGiant Skeleton") then
@@ -574,7 +579,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Shadow Stalkers")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wPlanet Calamity") then
@@ -609,7 +614,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Planet Calamity")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
@@ -679,7 +684,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Tasty Cakes")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wTaking Aim") then
@@ -706,7 +711,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Taking Aim")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wBad Taste") then
@@ -737,7 +742,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Bad Taste")
     end
-    Teleporter()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSolar Impact!") then
@@ -848,7 +853,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Cryonite Crisis")
     end
-    Teleporter()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSalvage Run") then
@@ -875,7 +880,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Salvage Run")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wShip Rescue") then
@@ -910,7 +915,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Ship Rescue")
     end
-    Gala()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSkeleton Crew") then
@@ -941,7 +946,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Skeleton Crew")
     end
-    Teleporter()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wGhost Ship") then
@@ -976,7 +981,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Ghost Ship")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wPit o' Trouble") then
@@ -1011,7 +1016,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Pit o' Trouble")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wClose Encounter") then
@@ -1087,7 +1092,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Escape Pod")
     end
-    Meds()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wPrevent War") then
@@ -1130,7 +1135,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Prevent War")
     end
-    Shield()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wMining Colony Rescue") then
@@ -1165,7 +1170,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Mining Colony Rescue")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wMining Colony Delivery") then
@@ -1200,7 +1205,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Mining Colony Delivery")
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`w(%w+) Duel") then
@@ -1276,7 +1281,7 @@ if true then
         .. " Extermination"
     )
     end
-    Drone()
+    skip()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`w(%w.-) Delivery") then
@@ -1315,7 +1320,7 @@ if true then
         .. " Delivery"
     )
     end
-    Drone()
+    skip()
     return true
     end
     elseif
@@ -1356,7 +1361,7 @@ if true then
         logToConsole("`b[`9MISSION`b] `6She's Gonna Blow!")
     end
     end
-    Drone()
+    skip()
     return true
     end
     end
