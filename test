@@ -2,7 +2,7 @@
 -- Not for sale --
 -- Respect the creator! --
 
-
+sendPacket(2, "action|input\n|text|`2press `3back button `#4EVILGANTENG") 
 if true then
     function skip()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
