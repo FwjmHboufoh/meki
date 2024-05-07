@@ -9,8 +9,8 @@ sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool65
 logToConsole("`b[`2TOOLS`b] `4Tactical Drone")
 end
 
-function Teleporter()
-sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6526")
+function skip()
+sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
 logToConsole("`b[`2TOOLS`b] `4Teleporter Charge")
 end
 
@@ -66,37 +66,7 @@ end
 
 function hook(var)
 if var[0] == "OnDialogRequest" and var[1]:find("end_dialog|startopia") and var[1]:find("Health") then
-if var[1]:find("add_label_with_icon|big|`w(%w+) Data") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 4 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 4 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole(
-    "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Data") .. " Data"
-)
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wSet a Course") then
@@ -125,42 +95,7 @@ end
 elseif
     var[1]:find("add_label_with_icon|big|`wOutpost Attack") or var[1]:find("add_label_with_icon|big|`wOne Angry Ship")
 then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Torp()
-elseif step == 2 then
-Dip()
-elseif step == 3 or step == 5 then
-Teleporter()
-elseif step == 4 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 then
-Torp()
-elseif step == 2 then
-Dip()
-elseif step == 3 or step == 5 then
-Teleporter()
-elseif step == 4 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-if var[1]:find("Outpost Attack") then
-logToConsole("`b[`9MISSION`b] `6Outpost Attack")
-elseif var[1]:find("One Angry Ship") then
-logToConsole("`b[`9MISSION`b] `6One Angry Ship")
-end
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wStarachnid Attack") then
@@ -224,34 +159,7 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wLife Pod") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Scan()
-elseif step == 2 then
-Meds()
-elseif step == 3 then
-Sup()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Teleporter()
-elseif step == 1 then
-Scan()
-elseif step == 2 then
-Meds()
-elseif step == 3 then
-Sup()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Life Pod")
-end
-Teleporter()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wBoarding Party") then
@@ -278,117 +186,19 @@ Scan()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wExperimental Salvage") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 2 or step == 3 then
-Teleporter()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 2 or step == 3 then
-Teleporter()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Experimental Salvage")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wDark Ship") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Teleporter()
-elseif step == 2 then
-AI()
-elseif step == 3 or step == 4 then
-Torp()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 then
-Teleporter()
-elseif step == 2 then
-AI()
-elseif step == 3 or step == 4 then
-Torp()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Dark Ship")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`w(%w+) Hunt") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 4 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 4 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole(
-    "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Hunt") .. " Hunt"
-)
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wWindy Days") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Windy Days")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wAncient Temple") then
@@ -446,65 +256,11 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wMiner Rescue") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Drone()
-elseif step == 2 or step == 4 or step == 5 then
-Teleporter()
-elseif step == 3 then
-Scan()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Gala()
-elseif step == 1 then
-Drone()
-elseif step == 2 or step == 4 or step == 5 then
-Teleporter()
-elseif step == 3 then
-Scan()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Miner Rescue")
-end
-Gala()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wHunter and Prey") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-AI()
-elseif step == 2 or step == 4 then
-Teleporter()
-elseif step == 3 then
-Giga()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 then
-AI()
-elseif step == 2 or step == 4 then
-Teleporter()
-elseif step == 3 then
-Giga()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Hunter and Prey")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wGiant Skeleton") then
@@ -539,77 +295,11 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wShadow Stalkers") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 5 or step == 7 then
-Teleporter()
-elseif step == 2 or step == 6 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 4 then
-Giga()
-elseif step == 8 then
-Torp()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 5 or step == 7 then
-Teleporter()
-elseif step == 2 or step == 6 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 4 then
-Giga()
-elseif step == 8 then
-Torp()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Shadow Stalkers")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wPlanet Calamity") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 3 or step == 6 then
-Teleporter()
-elseif step == 2 then
-AI()
-elseif step == 4 then
-Shield()
-elseif step == 5 then
-Torp()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 3 or step == 6 then
-Teleporter()
-elseif step == 2 then
-AI()
-elseif step == 4 then
-Shield()
-elseif step == 5 then
-Torp()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Planet Calamity")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
@@ -648,38 +338,7 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wTasty Cakes") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 6 then
-Teleporter()
-elseif step == 2 or step == 4 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 5 then
-Giga()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 6 then
-Teleporter()
-elseif step == 2 or step == 4 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 5 then
-Giga()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Tasty Cakes")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wTaking Aim") then
@@ -710,34 +369,7 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wBad Taste") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Dip()
-elseif step == 2 then
-Giga()
-elseif step == 3 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Teleporter()
-elseif step == 1 then
-Dip()
-elseif step == 2 then
-Doc()
-elseif step == 3 then
-Giga()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Bad Taste")
-end
-Teleporter()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wSolar Impact!") then
@@ -807,211 +439,27 @@ AI()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wCryonite Crisis") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 9 then
-Teleporter()
-elseif step == 1 or step == 3 then
-Scan()
-elseif step == 2 then
-Giga()
-elseif step == 4 or step == 5 then
-AI()
-elseif step == 6 then
-Shield()
-elseif step == 7 then
-Gala()
-elseif step == 8 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 or step == 9 then
-Teleporter()
-elseif step == 1 or step == 3 then
-Scan()
-elseif step == 2 then
-Giga()
-elseif step == 4 or step == 5 then
-AI()
-elseif step == 6 then
-Shield()
-elseif step == 7 then
-Gala()
-elseif step == 8 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Cryonite Crisis")
-end
-Teleporter()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wSalvage Run") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 3 then
-Teleporter()
-elseif step == 2 then
-Scan()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Salvage Run")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wShip Rescue") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Drone()
-elseif step == 2 or step == 5 then
-Teleporter()
-elseif step == 3 then
-Scan()
-elseif step == 4 then
-Meds()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Gala()
-elseif step == 1 then
-Drone()
-elseif step == 2 or step == 5 then
-Teleporter()
-elseif step == 3 then
-Scan()
-elseif step == 4 then
-Meds()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Ship Rescue")
-end
-Gala()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wSkeleton Crew") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Scan()
-elseif step == 2 then
-AI()
-elseif step == 3 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Teleporter()
-elseif step == 1 then
-Scan()
-elseif step == 2 then
-AI()
-elseif step == 3 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Skeleton Crew")
-end
-Teleporter()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wGhost Ship") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Dip()
-elseif step == 4 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Dip()
-elseif step == 4 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Ghost Ship")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wPit o' Trouble") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 4 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 5 then
-Torp()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 4 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 5 then
-Torp()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Pit o' Trouble")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wClose Encounter") then
@@ -1046,161 +494,19 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wEscape Pod") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 6 then
-Meds()
-elseif step == 1 then
-Drone()
-elseif step == 4 or step == 7 then
-Scan()
-elseif step == 2 then
-Shield()
-elseif step == 3 or step == 8 then
-Teleporter()
-elseif step == 5 then
-Giga()
-elseif step == 9 then
-Torp()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 or step == 6 then
-Meds()
-elseif step == 1 then
-Drone()
-elseif step == 4 or step == 7 then
-Scan()
-elseif step == 2 then
-Shield()
-elseif step == 3 or step == 8 then
-Teleporter()
-elseif step == 5 then
-Giga()
-elseif step == 9 then
-Torp()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Escape Pod")
-end
-Meds()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wPrevent War") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Drone()
-elseif step == 2 then
-Dip()
-elseif step == 3 then
-Teleporter()
-elseif step == 4 then
-Doc()
-elseif step == 5 then
-Gala()
-elseif step == 6 then
-Sup()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Shield()
-elseif step == 1 then
-Drone()
-elseif step == 2 then
-Dip()
-elseif step == 3 then
-Teleporter()
-elseif step == 4 then
-Doc()
-elseif step == 5 then
-Gala()
-elseif step == 6 then
-Sup()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Prevent War")
-end
-Shield()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wMining Colony Rescue") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Teleporter()
-elseif step == 2 then
-Dip()
-elseif step == 3 then
-Meds()
-elseif step == 4 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 then
-Teleporter()
-elseif step == 2 then
-Dip()
-elseif step == 3 then
-Meds()
-elseif step == 4 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Mining Colony Rescue")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wMining Colony Delivery") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 4 then
-Sup()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 4 then
-Sup()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole("`b[`9MISSION`b] `6Mining Colony Delivery")
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`w(%w+) Duel") then
@@ -1237,126 +543,17 @@ Drone()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`wMining Colony Delivery") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Sup()
-elseif step == 4 then
-Giga()
-elseif step == 5 then
-Doc()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Sup()
-elseif step == 4 then
-Giga()
-elseif step == 5 then
-Doc()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole(
-    "`b[`9MISSION`b] `6"
-    .. var[1]:match("add_label_with_icon|big|`w(%w.-) Extermination")
-    .. " Extermination"
-)
-end
-Drone()
+skip()
 return true
 end
 elseif var[1]:find("add_label_with_icon|big|`w(%w.-) Delivery") then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 4 then
-Sup()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 5 then
-Teleporter()
-elseif step == 2 then
-Scan()
-elseif step == 3 then
-Giga()
-elseif step == 4 then
-Sup()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-logToConsole(
-    "`b[`9MISSION`b] `6"
-    .. var[1]:match("add_label_with_icon|big|`w(%w.-) Delivery")
-    .. " Delivery"
-)
-end
-Drone()
+skip()
 return true
 end
 elseif
     var[1]:find("add_label_with_icon|big|`wWho's There") or var[1]:find("add_label_with_icon|big|`wShe's Gonna Blow")
 then
-if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-if var[1]:find("Skill Success") then
-step = step + 1
-if step == 1 then
-Teleporter()
-elseif step == 2 or step == 4 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 5 then
-Giga()
-end
-elseif var[1]:find("Skill Fail") then
-if step == 0 then
-Drone()
-elseif step == 1 or step == 6 then
-Teleporter()
-elseif step == 2 or step == 4 then
-Scan()
-elseif step == 3 then
-AI()
-elseif step == 5 then
-Giga()
-end
-end
-return true
-else
-    step = 0
-if Mission == 0 then
-if var[1]:find("|`wWho's There") then
-logToConsole("`b[`9MISSION`b] `6Who's There?")
-else
-    logToConsole("`b[`9MISSION`b] `6She's Gonna Blow!")
-end
-end
-Drone()
+skip()
 return true
 end
 end
