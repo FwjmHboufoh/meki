@@ -1368,7 +1368,7 @@ sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|failmi
 logToConsole("`b[`4FAIL`b]`2 Wrong Tools? Please Contact @monovs")
 return true
 elseif var[0] == "OnTalkBubble" and var.v3:find("You received") then
-return false
+return true
 elseif var[0] == "OnDialogRequest" and var[1]:find("The voyage continues!") then
 sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|finishmission")
 logToConsole("`b[`cSUCCESS`b]")
