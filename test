@@ -1367,7 +1367,7 @@ elseif var[0] == "OnDialogRequest" and var[1]:find("It is a good day to flee!") 
 sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|failmission")
 logToConsole("`b[`4FAIL`b]`2 Wrong Tools? Please Contact @monovs")
 return true
-elseif var[0] == "OnTalkBubble" and var[3]:find("`9You received") then
+elseif var[0] == "OnTalkBubble" and var[1]:find("`9You received") then
 return false
 elseif var[0] == "OnDialogRequest" and var[1]:find("The voyage continues!") then
 sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|finishmission")
