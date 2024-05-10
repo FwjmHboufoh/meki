@@ -1368,6 +1368,9 @@ if true then
     elseif var[0] == "OnDialogRequest" and var[1]:find("Starship Helm") then
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|beginvoyage")
     return true
+    elseif var[0] == "OnDialogRequest" and var[1]:find("`8Not enough Star Fuel") then
+    sendPacket(2, "action|input\n|text|`1bensin habis `4#kapten")
+    return true
     elseif var[0] == "OnDialogRequest" and var[1]:find("It is a good day to flee!") then
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|failmission")
     logToConsole("`b[`4FAIL`b]`2 Wrong Tools? Please Contact @monovs")
