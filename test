@@ -1430,14 +1430,6 @@ end
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = [[set_default_colour|`0
-    add_label_with_icon|big|`2Auto Staropia``|left|3142|
-    add_space_bar_small|
-    add_textbox|Respect The Creator|left|
-    add_textbox|Reseliing this script = `4Auto Ban|left|
-    end_dialog|startopia|evilganteng|
-    add_quick_exit|
-    ]]
     sendVariant(var)
     sleep(500)
     step = 0
