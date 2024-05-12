@@ -199,6 +199,45 @@ if true then
     Drone()
     return true
     end
+elseif var[1]:find("add_label_with_icon|big|`wDoing The Right Thing!") or var[1]:find("add_label_with_icon|big|`wSecret Stash") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+        step = step + 1
+        if step == 1 then
+            Shield()
+        elseif step == 2 or step == 5 then
+            Teleporter()
+        elseif step == 3 then
+            Giga()
+        elseif step == 4 then
+            Scan()
+        end
+    elseif var[1]:find("Skill Fail") then
+        if step == 0 then
+            Drone()
+        elseif step == 1 then
+            Shield()
+        elseif step == 2 or step == 5 then
+            Teleporter()
+        elseif step == 3 then
+            Giga()
+        elseif step == 4 then
+            Scan()
+    end
+    end
+    return true
+else
+    step = 0
+    if mission == 0 then
+    if var[1]:find("|`wDoing The Right Thing!")then
+        logToConsole("`b[`9MISSION`b] `6Doing The Right Thing!")
+    else
+        logToConsole("`b[`9MISSION`b] `6Secret Stash")
+    end
+    end
+    Drone()
+    return true
+end
     elseif var[1]:find("add_label_with_icon|big|`w(%w+) Attack") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
