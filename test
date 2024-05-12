@@ -4,18 +4,6 @@
 sendPacket(2, "action|input\n|text|`1press `2back button `4#EVILGANTENG")
 if true then
 
-    function meki()
-    var[0] = "OnDialogRequest"
-    var[1] = [[set_default_colour|`0
-    add_label_with_icon|big|`2Auto Staropia``|left|3142|
-    add_space_bar_small|
-    add_textbox|Respect The Creator|left|
-    add_textbox|Reseliing this script = `4Auto Ban|left|
-    end_dialog|startopia|evilganteng|
-    add_quick_exit|
-    ]]
-    sendVariant(var, -1, 100)
-    end
     function skip()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
     logToConsole("`b[`2SKIPPING MISSION`b] `4DUAR MEMEK")
