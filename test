@@ -1450,7 +1450,7 @@ end
     end_dialog|startopia|evilganteng|
     add_quick_exit|
     ]]
-    sendVariant(OnVarlist,-1,100)
+    sendVariant(var)
     sleep(500)
     step = 0
     Mission = 0
