@@ -1,8 +1,7 @@
 -- Don't touch it! --
 -- Not for sale --
 -- Respect the creator! --
-
-
+sendPacket(2, "action|input\n|text|`1press `2back button `4#EVILGANTENG")
 if true then
 
     function meki()
@@ -1451,7 +1450,7 @@ end
     end_dialog|startopia|evilganteng|
     add_quick_exit|
     ]]
-    sendVariant(var,-1,100)
+    sendVariant(OnVarlist,-1,100)
     sleep(500)
     step = 0
     Mission = 0
