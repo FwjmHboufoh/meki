@@ -1430,6 +1430,8 @@ end
     
     var = {}
     var[0] = "OnDialogRequest"
+    var[1] = [[set_default_colour|`0
+    add_label_with_icon_big|`wStartopia``|left|3142]]
     sendVariant(var)
     sleep(500)
     step = 0
