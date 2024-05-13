@@ -3,12 +3,8 @@
 -- Respect the creator! --
 
 sendPacket(2, "action|input\n|text|`1press `2back button `4#EVILGANTENG") 
+
 if true then
-    function skip()
-    sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|emergencyWarp")
-    logToConsole("`b[`2SKIPPING MISSION`b] `4DUAR MEMEK")
-    end
-    
     function Drone()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6532")
     logToConsole("`b[`2TOOLS`b] `4Tactical Drone")
@@ -101,7 +97,7 @@ if true then
         "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Data") .. " Data"
     )
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSet a Course") then
@@ -165,7 +161,7 @@ if true then
     logToConsole("`b[`9MISSION`b] `6One Angry Ship")
     end
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wStarachnid Attack") then
@@ -199,45 +195,6 @@ if true then
     Drone()
     return true
     end
-elseif var[1]:find("add_label_with_icon|big|`wDoing The Right Thing!") or var[1]:find("add_label_with_icon|big|`wSecret Stash") then
-    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-    if var[1]:find("Skill Success") then
-        step = step + 1
-        if step == 1 then
-            Shield()
-        elseif step == 2 or step == 5 then
-            Teleporter()
-        elseif step == 3 then
-            Giga()
-        elseif step == 4 then
-            Scan()
-        end
-    elseif var[1]:find("Skill Fail") then
-        if step == 0 then
-            Drone()
-        elseif step == 1 then
-            Shield()
-        elseif step == 2 or step == 5 then
-            Teleporter()
-        elseif step == 3 then
-            Giga()
-        elseif step == 4 then
-            Scan()
-    end
-    end
-    return true
-else
-    step = 0
-    if mission == 0 then
-    if var[1]:find("|`wDoing The Right Thing!")then
-        logToConsole("`b[`9MISSION`b] `6Doing The Right Thing!")
-    else
-        logToConsole("`b[`9MISSION`b] `6Secret Stash")
-    end
-    end
-    Drone()
-    return true
-end
     elseif var[1]:find("add_label_with_icon|big|`w(%w+) Attack") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
@@ -341,7 +298,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Experimental Salvage")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wDark Ship") then
@@ -405,7 +362,7 @@ end
         "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Hunt") .. " Hunt"
     )
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wWindy Days") then
@@ -432,7 +389,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Windy Days")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wAncient Temple") then
@@ -517,7 +474,46 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Miner Rescue")
     end
-    skip()
+    Gala()
+    return true
+    end
+    elseif var[1]:find("add_label_with_icon|big|`wDoing The Right Thing!") or var[1]:find("add_label_with_icon|big|`wSecret Stash") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Shield()
+    elseif step == 2 or step == 5 then
+    Teleporter()
+    elseif step == 3 then
+    Giga()
+    elseif step == 4 then
+    Scan()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 then
+    Shield()
+    elseif step == 2 or step == 5 then
+    Teleporter()
+    elseif step == 3 then
+    Giga()
+    elseif step == 4 then
+    Scan()
+    end
+    end
+    return true
+    else
+    step = 0
+    if mission == 0 then
+    if var[1]:find("|`wDoing The Right Thing!")then
+    logToConsole("`b[`9MISSION`b] `6Doing The Right Thing!")
+    else
+    logToConsole("`b[`9MISSION`b] `6Secret Stash")
+    end
+    end
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wHunter and Prey") then
@@ -548,7 +544,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Hunter and Prey")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wGiant Skeleton") then
@@ -618,7 +614,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Shadow Stalkers")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wPlanet Calamity") then
@@ -653,7 +649,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Planet Calamity")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
@@ -723,7 +719,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Tasty Cakes")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wTaking Aim") then
@@ -750,7 +746,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Taking Aim")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wBad Taste") then
@@ -892,7 +888,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Cryonite Crisis")
     end
-    skip()
+    Teleporter()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSalvage Run") then
@@ -919,7 +915,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Salvage Run")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wShip Rescue") then
@@ -954,7 +950,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Ship Rescue")
     end
-    skip()
+    Gala()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSkeleton Crew") then
@@ -1020,7 +1016,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Ghost Ship")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wPit o' Trouble") then
@@ -1055,7 +1051,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Pit o' Trouble")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wClose Encounter") then
@@ -1131,10 +1127,10 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Escape Pod")
     end
-    skip()
+    Meds()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wPrevent War") then
+    elseif var[1]:find("add_label_with_icon|big|`wPrevents War") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -1244,7 +1240,7 @@ end
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Mining Colony Delivery")
     end
-    skip()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`w(%w+) Duel") then
@@ -1280,7 +1276,7 @@ end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wMining Colony Delivery") then
+    elseif var[1]:find("add_label_with_icon|big|`w(%w.-) Extermination") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -1359,7 +1355,7 @@ end
         .. " Delivery"
     )
     end
-    skip()
+    Drone()
     return true
     end
     elseif
@@ -1400,12 +1396,12 @@ end
         logToConsole("`b[`9MISSION`b] `6She's Gonna Blow!")
     end
     end
-    skip()
+    Drone()
     return true
     end
     end
     elseif var[0] == "OnDialogRequest" and var[1]:find("`8Not enough Star Fuel") then
-    sendPacket(2, "action|input\n|text|`1bensin habis `4#kapten")
+    sendPacket(2, "action|input\n|text|`1check your `4star fuel")
     return true
     elseif var[0] == "OnDialogRequest" and var[1]:find("Starship Helm") then
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|beginvoyage")
@@ -1430,13 +1426,7 @@ end
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = [[set_default_colour|`o
-add_label_with_icon|big|`wSetting``|left|32|
-add_smalltext|world_l|]] 
-[[|3|
-add_smalltext|nn : no number, wn : with number.|
-end_dialog|set_find_world|Cancel|OK|]]
-    sendVariant(var,-1,100)
+    sendVariant(var)
     sleep(500)
     step = 0
     Mission = 0
