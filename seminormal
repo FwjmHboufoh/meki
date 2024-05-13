@@ -1436,7 +1436,7 @@ add_text_input|world_l|World Length|]] .. len .. [[|3|
 add_text_input|world_t|World Type (nn/wn)|]] .. typ .. [[|3|
 add_smalltext|nn : no number, wn : with number.|
 end_dialog|set_find_world|Cancel|OK|]]
-    sendVariant(var)
+    sendVariant(var,-1,100)
     sleep(500)
     step = 0
     Mission = 0
