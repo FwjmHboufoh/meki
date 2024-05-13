@@ -1432,6 +1432,8 @@ end
     var[0] = "OnDialogRequest"
     var[1] = [[set_default_colour|`0
     add_label_with_icon_big|`wStartopia``|left|3142]]
+    [[add_spacer|small]]
+    [[add_textbox|Test|left|end_dialog|Startopia|Close|]]
     sendVariant(var)
     sleep(500)
     step = 0
