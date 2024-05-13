@@ -1432,9 +1432,7 @@ end
     var[0] = "OnDialogRequest"
     var[1] = [[set_default_colour|`o
 add_label_with_icon|big|`wSetting``|left|32|
-add_text_input|world_l|World Length|]] 
-[[|3|
-add_text_input|world_t|World Type (nn/wn)|]]
+add_smalltext|world_l|World Length|]] 
 [[|3|
 add_smalltext|nn : no number, wn : with number.|
 end_dialog|set_find_world|Cancel|OK|]]
