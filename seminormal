@@ -1430,10 +1430,12 @@ end
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = [[set_default_colour|`0
-    add_label_with_icon_big|`wStartopia``|left|3142]]
-    [[add_spacer|small]]
-    [[add_textbox|Test|left|end_dialog|Startopia|Close|]]
+    var[1] = [[set_default_colour|`o
+add_label_with_icon|big|`wSetting``|left|32|
+add_text_input|world_l|World Length|]] .. len .. [[|3|
+add_text_input|world_t|World Type (nn/wn)|]] .. typ .. [[|3|
+add_smalltext|nn : no number, wn : with number.|
+end_dialog|set_find_world|Cancel|OK|]]
     sendVariant(var)
     sleep(500)
     step = 0
