@@ -918,32 +918,35 @@ if true then
     Drone()
     return true
     end
-        elseif var[1]:find("add_label_with_icon|big|`wShip Rescue") then
+    elseif var[1]:find("add_label_with_icon|big|`wShip Rescue") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
-    if step == 1 then
-    Drone()
-    elseif step == 2 or step == 5 then
+    if step == 1 or step == 4 then
     Teleporter()
-    elseif step == 3 then
+    elseif step == 2 then
     Scan()
-    elseif step == 4 then
+    elseif step == 3 then
     Meds()
     end
     elseif var[1]:find("Skill Fail") then
     if step == 0 then
-    Gala()
-    elseif step == 1 then
     Drone()
-    elseif step == 2 or step == 5 then
+    elseif step == 1 or step == 4 then
     Teleporter()
-    elseif step == 3 then
+    elseif step == 2 then
     Scan()
-    elseif step == 4 then
+    elseif step == 3 then
     Meds()
     end
     end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Ship Rescue")
+    end
+    Gala()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSkeleton Crew") then
@@ -1123,7 +1126,7 @@ if true then
     Meds()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wPrevents War") then
+    elseif var[1]:find("add_label_with_icon|big|`wPrevent War") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -1416,8 +1419,11 @@ if true then
     end
     return false
     end
-
-
+    
+    var = {}
+    var[0] = "OnDialogRequest"
+    sendVariant(var)
+    sleep(500)
     step = 0
     Mission = 0
     AddHook("OnVarlist", "hookied", hook)
