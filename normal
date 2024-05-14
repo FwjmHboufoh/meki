@@ -3,6 +3,21 @@
 -- Respect the creator! --
 -- Thanks to Otan, Monovs, Nightxx
 -- Recoded some codes by evilzoldyck
+function logTime(satan, satanSleep) 
+    logToConsole("[ `4E V I L`` ] `9Script Loading...")
+    sendVariant({
+      [0] = "OnSetMissionTimer", 
+      [1] = satan, 
+    })
+  sleep(satanSleep)
+  sendVariant({[0] = "OnEndMission", }) 
+  end
+  logTime(3, 3000)
+  sendVariant({
+  [0] = "OnAddNotification", 
+  [2] = "`2DONT SELL THIS SCRIPT!``",
+   [3] = "audio/slot_win.wav"}) 
+  
   opening = [[ set_default_colour|`o
   add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
   add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
