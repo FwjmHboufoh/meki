@@ -33,7 +33,6 @@ opening = [[
   add_label_with_icon|small|`^Your Position : `b( ]]..(getLocal().pos.x//32)..[[ - ]]..(getLocal().pos.y//32)..[[ )|left|482|
   add_textbox|`b===========================``|left|
   add_spacer|small|
-  text_scaling_string|satankontoljzsj|
   add_button_with_icon||END_LIST|noflags|0||
   add_spacer|small||
   end_dialog|stardial||     E V I L     |
