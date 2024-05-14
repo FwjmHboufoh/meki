@@ -17,7 +17,7 @@ function logTime(satan, satanSleep)
   [0] = "OnAddNotification", 
   [2] = "`2DONT SELL THIS SCRIPT!``",
    [3] = "audio/slot_win.wav"}) 
-opening = [[add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|3142|
+opening = [[add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7780|
 add_spacer|small|
   add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
   add_smalltext|`2[ - ] Credit : `4EviL - Otan - Monovs - Nightxx``|
