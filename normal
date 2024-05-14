@@ -3,7 +3,21 @@
 -- Respect the creator! --
 -- Thanks to Otan, Monovs, Nightxx
 -- Recoded some codes by evilzoldyck
-
+function logTime(satan, satanSleep) 
+    logToConsole("[ `4E V I L`` ] `9Script Loading...")
+    sendVariant({
+      [0] = "OnSetMissionTimer", 
+      [1] = satan, 
+    })
+  sleep(satanSleep)
+  sendVariant({[0] = "OnEndMission", }) 
+  end
+  logTime(3, 3000)
+  sendVariant({
+  [0] = "OnAddNotification", 
+  [2] = "`2DONT SELL THIS SCRIPT!``",
+   [3] = "audio/slot_win.wav"}) 
+  
 
 
 if true then
@@ -1424,6 +1438,7 @@ if true then
     
     var = {}
     var[0] = "OnDialogRequest"
+    var[1] = opening
     sendVariant(var)
     sleep(500)
     step = 0
