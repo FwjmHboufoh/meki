@@ -1454,6 +1454,7 @@ if true then
     var[0] = "OnDialogRequest"
     var[1] = opening
     sendVariant(var)
+    sleep(500)
     step = 0
     Mission = 0
     AddHook("OnVarlist", "hookied", hook)
