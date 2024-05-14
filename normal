@@ -1,6 +1,8 @@
 -- Don't touch it! --
 -- Not for sale --
 -- Respect the creator! --
+-- Thanks to Otan, Monovs, Nightxx
+-- Recoded some codes by evilzoldyck
 
 sendPacket(2, "action|input\n|text|`1press `2back button `4#EVILGANTENG") 
 
