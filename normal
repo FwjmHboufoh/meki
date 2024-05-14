@@ -1455,7 +1455,7 @@ if true then
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = memek
+    var[1] = opening
     sendVariant(var)
     sleep(500)
     step = 0
