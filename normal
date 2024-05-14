@@ -1450,6 +1450,10 @@ if true then
     end
     return false
     end
+    var = {}
+    var[0] = "OnDialogRequest"
+    var[1] = opening
+    sendVariant(var)
     step = 0
     Mission = 0
     AddHook("OnVarlist", "hookied", hook)
