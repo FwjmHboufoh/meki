@@ -1455,8 +1455,7 @@ if true then
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = opening
-      opening = [[
+    var[1] = 
   add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
   add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
   add_smalltext|`2[ - ] Credit : `4EviL - Otan - Monovs - Nightxx``|
