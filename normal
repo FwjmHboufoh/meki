@@ -3,7 +3,7 @@
 -- Respect the creator! --
 -- Thanks to Otan, Monovs, Nightxx
 -- Recoded some codes by evilzoldyck
-opening = [[
+opening = [[ set_default_colour|`o
 add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
 add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
 add_smalltext|`2[ - ] Credit : `4EviL - Otan``|
