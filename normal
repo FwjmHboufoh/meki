@@ -922,25 +922,21 @@ if true then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
-    if step == 1 then
-    Drone()
-    elseif step == 2 or step == 5 then
+    if step == 1 or step == 4 then
     Teleporter()
-    elseif step == 3 then
+    elseif step == 2 then
     Scan()
-    elseif step == 4 then
+    elseif step == 3 then
     Meds()
     end
     elseif var[1]:find("Skill Fail") then
     if step == 0 then
-    Gala()
-    elseif step == 1 then
     Drone()
-    elseif step == 2 or step == 5 then
+    elseif step == 1 or step == 4 then
     Teleporter()
-    elseif step == 3 then
+    elseif step == 2 
     Scan()
-    elseif step == 4 then
+    elseif step == 3 then
     Meds()
     end
     end
@@ -950,7 +946,7 @@ if true then
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Ship Rescue")
     end
-    Gala()
+    Drone()
     return true
     end
     elseif var[1]:find("add_label_with_icon|big|`wSkeleton Crew") then
