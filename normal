@@ -1455,8 +1455,7 @@ if true then
     
     var = {}
     var[0] = "OnDialogRequest"
-    var[1] = 
-  add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
+    var[1] =   add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
   add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
   add_smalltext|`2[ - ] Credit : `4EviL - Otan - Monovs - Nightxx``|
   add_smalltext|`2[ - ] ( Some missions might not work cuz I commented the code , `4This Script Its Free At `2https://discord.gg/genta7740``or see in my github `2https://github.com/FwjmHboufoh/meki`` Dont Sell It Nigga. )|
