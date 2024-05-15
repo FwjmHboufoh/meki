@@ -1446,7 +1446,7 @@ if true then
 add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
 add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
 add_smalltext|`2[ - ] Credit : `4EviL - Otan - Monovs - Nightxx``|
-add_smalltext|`2[ - ] ( Some mission might not work cuz I commented the code , If you found any bugs Please contact @evilzoldyck )|
+add_smalltext|`2[ - ] Some missions might not work because I commented out the code, and not all missions have been added yet. If you found any bugs Please contact `4@evilzoldyck``|
 add_smalltext|`2[ - ] `4This Script Its Free At `2https://discord.gg/genta7740`` Or check on my GitHub `2https://github.com/FwjmHboufoh/meki`` Dont Sell It Nigga.|
 add_textbox|`1=====================================================``|left|
 add_label_with_icon|small|`^UID : `1]]..getLocal().userId..[[|left|482|
