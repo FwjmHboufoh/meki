@@ -1446,7 +1446,8 @@ if true then
 add_label_with_icon|big|`9S T A R T O P I A GentaHax``|left|7074|
 add_textbox|`2Hello `4]]..getLocal().name ..[[`` Thank You For Using This Script :3|
 add_smalltext|`2[ - ] Credit : `4EviL - Otan - Monovs - Nightxx``|
-add_smalltext|`2[ - ] (  Some mission might not work cuz I commented the code , `4This Script Its Free At `2https://discord.gg/genta7740`` Or check my GitHub `2https://github.com/FwjmHboufoh/meki`` Dont Sell It Nigga. `2)``|
+add_smalltext|`2[ - ] ( Some mission might not work cuz I commented the code , If you found any bugs Please contact @evilzoldyck )|
+add_smalltext|`2[ - ] `4This Script Its Free At `2https://discord.gg/genta7740`` Or check on my GitHub `2https://github.com/FwjmHboufoh/meki`` Dont Sell It Nigga.|
 add_textbox|`1=====================================================``|left|
 add_label_with_icon|small|`^UID : `1]]..getLocal().userId..[[|left|482|
 add_label_with_icon|small|`^GENTA UID : `1]]..getDiscordID()..[[|left|482|
@@ -1454,10 +1455,10 @@ add_label_with_icon|small|`^Your Position : `1( ]]..(getLocal().pos.x//32)..[[ -
 add_textbox|`1=====================================================``|left|
 add_spacer|small|
 text_scaling_string|satankontoljzsj|
-add_button_with_icon|yaha| `9 FREE DLS!!!|staticYellowFrame|1796||
+add_button_with_icon|yaha| `9 FREE DLS HERE!!!|staticYellowFrame|1796||
 add_button_with_icon||END_LIST|noflags|0||
 add_spacer|small||
-end_dialog|stardial||     E V I L     |
+end_dialog|stardial||`4     E V I L     |
 ]]
   
 var = {}
