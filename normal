@@ -873,8 +873,6 @@ if true then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
-    if step == 9 then
-    Teleporter()
     elseif step == 1 or step == 3 then
     Scan()
     elseif step == 2 then
@@ -887,6 +885,8 @@ if true then
     Gala()
     elseif step == 8 then
     Doc()
+    if step == 9 then
+    Teleporter()
     end
     elseif var[1]:find("Skill Fail") then
     if step == 0 or step == 9 then
