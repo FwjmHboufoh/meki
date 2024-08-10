@@ -2301,12 +2301,12 @@ function hook(var)
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wWho's There") or var[1]:find("add_label_with_icon|big|`wShe's Gonna Blow")
+    elseif var[1]:find("add_label_with_icon|big|`wWho's There")
     then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
-    if step == 1 then
+    if step == 1 or step == 6 then
     Teleporter()
     elseif step == 2 or step == 4 then
     Scan()
