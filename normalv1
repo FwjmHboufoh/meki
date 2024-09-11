@@ -90,7 +90,7 @@ if true then
     
 function hook(var)
     if var[0] == "OnDialogRequest" and var[1]:find("end_dialog|startopia") and var[1]:find("Health") then
-    if var[1]:find("add_label_with_icon|big|`wPilot Data") then
+    if var[1]:find("add_label_with_icon|big|`wsnPilots Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -116,12 +116,12 @@ function hook(var)
     else
     step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Pilot Data")
+    logToConsole("`b[`9MISSION`b] `6Pilots Data")
     end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wWarfare Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wWarfares Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -147,12 +147,12 @@ function hook(var)
     else
     step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Warfare Data")
+    logToConsole("`b[`9MISSION`b] `6Warfares Data")
     end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wStorm Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wStorms Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -178,12 +178,12 @@ function hook(var)
     else
     step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Storm Data")
+    logToConsole("`b[`9MISSION`b] `6Storms Data")
     end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wCollision Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wCollisionsn Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -214,7 +214,7 @@ function hook(var)
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wAsteroid Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wAsteroids Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -245,7 +245,7 @@ function hook(var)
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wSkeleton Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wSkeletons Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -271,12 +271,12 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Skeleton Data")
+    logToConsole("`b[`9MISSION`b] `6Skeletons Data")
     end
     Drone()
     return true
     end
-    if var[1]:find("add_label_with_icon|big|`wMoon Data") then
+    if var[1]:find("add_label_with_icon|big|`wMoon Datas") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -307,7 +307,7 @@ function hook(var)
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wCargo Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wCargo Datas") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -333,7 +333,7 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Cargo Data")
+    logToConsole("`b[`9MISSION`b] `6Cargo Datas")
     end
     Drone()
     return true
@@ -364,7 +364,7 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Energy Data")
+    logToConsole("`b[`9MISSION`b] `6Energys Data")
     end
     Drone()
     return true
@@ -395,7 +395,7 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6DevastationData")
+    logToConsole("`b[`9MISSION`b] `6DevastationDatas")
     end
     Drone()
     return true
@@ -426,7 +426,7 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Radiation Data")
+    logToConsole("`b[`9MISSION`b] `6Radiations Data")
     end
     Drone()
     return true
@@ -457,12 +457,12 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6WeaponsData")
+    logToConsole("`b[`9MISSION`b] `6WeaponsDatas")
     end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wDebris Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wDebriss Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -488,12 +488,12 @@ function hook(var)
     else
         step = 0
     if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Debris Data")
+    logToConsole("`b[`9MISSION`b] `6Debriss Data")
     end
     Drone()
     return true
     end
-    elseif var[1]:find("add_label_with_icon|big|`wLiterary Data") then
+    elseif var[1]:find("add_label_with_icon|big|`wLiterarys Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
     step = step + 1
@@ -2296,6 +2296,440 @@ elseif var[1]:find("add_label_with_icon|big|`wRobot Hunt") then
         step = 0
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Robot Hunt")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wPilot Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Pilot Data")
+    end
+    Drone()
+    return true
+    end
+    elseif var[1]:find("add_label_with_icon|big|`wWarfare Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+     else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Warfare Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wStorm Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Storm Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wCollision Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Collision Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wAsteroid Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Asteroid Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wSkeleton Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Skeleton Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wMoon Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Moon Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wCargo Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Cargo Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wEnergy Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Energy Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wDevastation Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Devastation Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wRadiation Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Radiation Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wWeapons Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Weapons Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wDebris Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Debris Data")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wLiterary Data") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Literary Data")
     end
     Drone()
     return true
