@@ -547,78 +547,6 @@ function hook(var)
     Drone()
     return true
     end
-    elseif
-        var[1]:find("add_label_with_icon|big|`wOutpost Attack") or var[1]:find("add_label_with_icon|big|`wOne Angry Ship")
-    then
-    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-    if var[1]:find("Skill Success") then
-    step = step + 1
-    if step == 1 then
-    Torp()
-    elseif step == 2 then
-    Dip()
-    elseif step == 3 or step == 5 then
-    Teleporter()
-    elseif step == 4 then
-    Doc()
-    end
-    elseif var[1]:find("Skill Fail") then
-    if step == 0 then
-    Drone()
-    elseif step == 1 then
-    Torp()
-    elseif step == 2 then
-    Dip()
-    elseif step == 3 or step == 5 then
-    Teleporter()
-    elseif step == 4 then
-    Doc()
-    end
-    end
-    return true
-    else
-        step = 0
-    if Mission == 0 then
-    if var[1]:find("Outpost Attack") then
-    logToConsole("`b[`9MISSION`b] `6Outpost Attack")
-    elseif var[1]:find("One Angry Ship") then
-    logToConsole("`b[`9MISSION`b] `6One Angry Ship")
-    end
-    end
-    Drone()
-    return true
-    end
-    elseif var[1]:find("add_label_with_icon|big|`wStarachnid Attack") then
-    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-    if var[1]:find("Skill Success") then
-    step = step + 1
-    if step == 1 or step == 3 then
-    Torp()
-    elseif step == 2 then
-    Sup()
-    elseif step == 4 then
-    Giga()
-    end
-    elseif var[1]:find("Skill Fail") then
-    if step == 0 then
-    Drone()
-    elseif step == 1 or step == 3 then
-    Torp()
-    elseif step == 2 then
-    Sup()
-    elseif step == 4 then
-    Giga()
-    end
-    end
-    return true
-    else
-        step = 0
-    if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Starachnid Attack")
-    end
-    Drone()
-    return true
-    end
     elseif var[1]:find("add_label_with_icon|big|`wLife Pod") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
@@ -692,37 +620,6 @@ function hook(var)
         step = 0
     if Mission == 0 then
     logToConsole("`b[`9MISSION`b] `6Experimental Salvage")
-    end
-    Drone()
-    return true
-    end
-    elseif var[1]:find("add_label_with_icon|big|`wDark Ship") then
-    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
-    if var[1]:find("Skill Success") then
-    step = step + 1
-    if step == 1 then
-    Teleporter()
-    elseif step == 2 then
-    AI()
-    elseif step == 3 or step == 4 then
-    Torp()
-    end
-    elseif var[1]:find("Skill Fail") then
-    if step == 0 then
-    Drone()
-    elseif step == 1 then
-    Teleporter()
-    elseif step == 2 then
-    AI()
-    elseif step == 3 or step == 4 then
-    Torp()
-    end
-    end
-    return true
-    else
-        step = 0
-    if Mission == 0 then
-    logToConsole("`b[`9MISSION`b] `6Dark Ship")
     end
     Drone()
     return true
@@ -2271,6 +2168,68 @@ elseif var[1]:find("add_label_with_icon|big|`wRobot Hunt") then
     Drone()
     return true
     end
+elseif var[1]:find("add_label_with_icon|big|`wParasite Hunt") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 4 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 3 then
+    Giga()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 4 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 3 then
+    Giga()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Parasite Hunt")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wGreezak Hunt") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 4 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 3 then
+    Giga()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 4 then
+    Teleporter()
+    elseif step == 2 then
+    Scan()
+    elseif step == 3 then
+    Giga()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Greezak Hunt")
+    end
+    Drone()
+    return true
+    end
 elseif var[1]:find("add_label_with_icon|big|`wPilot Data") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
@@ -2760,6 +2719,107 @@ elseif var[1]:find("add_label_with_icon|big|`w(%w+) Attack!") then
     if Mission == 0 then
     logToConsole(
         "`b[`9MISSION`b] `6" .. var[1]:match("add_label_with_icon|big|`w(%w+) Attack!") .. " Attack!")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wStarachnid Attack") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 or step == 3 then
+    Torp()
+    elseif step == 2 then
+    Sup()
+    elseif step == 4 then
+    Giga()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 or step == 3 then
+    Torp()
+    elseif step == 2 then
+    Sup()
+    elseif step == 4 then
+    Giga()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Starachnid Attack")
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wOutpost Attack") or var[1]:find("add_label_with_icon|big|`wOne Angry Ship") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Torp()
+    elseif step == 2 then
+    Dip()
+    elseif step == 3 or step == 5 then
+    Teleporter()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 then
+    Torp()
+    elseif step == 2 then
+    Dip()
+    elseif step == 3 or step == 5 then
+    Teleporter()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+    step = 0
+    if Mission == 0 then
+    if var[1]:find("Outpost Attack") then
+    logToConsole("`b[`9MISSION`b] `6Outpost Attack")
+    elseif var[1]:find("One Angry Ship") then
+    logToConsole("`b[`9MISSION`b] `6One Angry Ship")
+    end
+    end
+    Drone()
+    return true
+    end
+elseif var[1]:find("add_label_with_icon|big|`wDark Ship") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Teleporter()
+    elseif step == 2 then
+    AI()
+    elseif step == 3 or step == 4 then
+    Torp()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 then
+    Teleporter()
+    elseif step == 2 then
+    AI()
+    elseif step == 3 or step == 4 then
+    Torp()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Dark Ship")
     end
     Drone()
     return true
