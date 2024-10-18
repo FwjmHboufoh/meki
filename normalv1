@@ -2940,6 +2940,41 @@ elseif var[1]:find("add_label_with_icon|big|`wWindy Days") then
     Drone()
     return true
     end
+elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Dip()
+    elseif step == 2 then
+    Gala()
+    elseif step == 3 then
+    AI()
+    elseif step == 4 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 then
+    Dip()
+    elseif step == 2 or step == 6 then
+    Gala()
+    elseif step == 3 then
+    AI()
+    elseif step == 4 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6A Strange One")
+    end
+    Drone()
+    return true
+    end
     elseif var[1]:find("add_label_with_icon|big|`wScientific Outpost Delivery") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
