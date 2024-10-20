@@ -30,62 +30,62 @@ end)
 if true then
     function Drone()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6532")
-    logToConsole("`b[`2TOOLS`b] `4Tactical Drone")
+    logToConsole("`$[`2TOOLS`$] `4Tactical Drone")
     end
     
     function Teleporter()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6526")
-    logToConsole("`b[`2TOOLS`b] `4Teleporter Charge")
+    logToConsole("`$[`2TOOLS`$] `4Teleporter Charge")
     end
     
     function Doc()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6534")
-    logToConsole("`b[`2TOOLS`b]`4 Stellar Documents")
+    logToConsole("`$[`2TOOLS`$]`4 Stellar Documents")
     end
     
     function Scan()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6530")
-    logToConsole("`b[`2TOOLS`b]`4 Quadriscanner")
+    logToConsole("`$[`2TOOLS`$]`4 Quadriscanner")
     end
     
     function Torp()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6540")
-    logToConsole("`b[`2TOOLS`b]`4 Growton Torpedo")
+    logToConsole("`$[`2TOOLS`$]`4 Growton Torpedo")
     end
     
     function Dip()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6538")
-    logToConsole("`b[`2TOOLS`b]`4 Cyborg Diplomat")
+    logToConsole("`$[`2TOOLS`$]`4 Cyborg Diplomat")
     end
     
     function Sup()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6536")
-    logToConsole("`b[`2TOOLS`b]`4 Star Supplies")
+    logToConsole("`$[`2TOOLS`$]`4 Star Supplies")
     end
     
     function Giga()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6528")
-    logToConsole("`b[`2TOOLS`b] `4Gigablaster")
+    logToConsole("`$[`2TOOLS`$] `4Gigablaster")
     end
     
     function Shield()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6518")
-    logToConsole("`b[`2TOOLS`b] `4HyperShields")
+    logToConsole("`$[`2TOOLS`$] `4HyperShields")
     end
     
     function AI()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6520")
-    logToConsole("`b[`2TOOLS`b] `4AI Brain")
+    logToConsole("`$[`2TOOLS`$] `4AI Brain")
     end
     
     function Gala()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6522")
-    logToConsole("`b[`2TOOLS`b] `4Galactibolt")
+    logToConsole("`$[`2TOOLS`$] `4Galactibolt")
     end
     
     function Meds()
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|tool6524")
-    logToConsole("`b[`2TOOLS`b] `4Space Meds")
+    logToConsole("`$[`2TOOLS`$] `4Space Meds")
     end
     
 function hook(var)
@@ -2975,6 +2975,37 @@ elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
     Drone()
     return true
     end
+elseif var[1]:find("add_label_with_icon|big|`wAncient Temple") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Dip()
+    elseif step == 2 then
+    Sup()
+    elseif step == 3 then
+    Doc()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Drone()
+    elseif step == 1 then
+    Dip()
+    elseif step == 2 then
+    Sup()
+    elseif step == 3 then
+    Doc()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Ancient Temple")
+    end
+    Drone()
+    return true
+    end
     elseif var[1]:find("add_label_with_icon|big|`wScientific Outpost Delivery") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
@@ -3268,18 +3299,18 @@ elseif var[1]:find("add_label_with_icon|big|`wA Strange One") then
     sendPacket(2, "action|input\n|text|`1check your `4star fuel")
     return true
     elseif var[0] == "OnDialogRequest" and var[1]:find("Starship Helm") then
-        logToConsole("`2[`4STARTING MISSION`2]")
+        logToConsole("`$[`cSTARTING MISSION`$]")
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|beginvoyage")
     return true
     elseif var[0] == "OnDialogRequest" and var[1]:find("It is a good day to flee!") then
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|failmission")
-    logToConsole("`b[`4FAIL`b]`2 Wrong Tools? Please Contact @evilzoldyck")
+    logToConsole("`$[`4FAIL`$]`4 Wrong Tools? `cPlease Contact `2@evilzoldyck")
     return true
     elseif var[0] == "OnConsoleMessage" and var[1]:find("`9You received") then
     return false
     elseif var[0] == "OnDialogRequest" and var[1]:find("The voyage continues!") then
     sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|finishmission")
-    logToConsole("`b[`cSUCCESS`b]")
+    logToConsole("`$[`cSUCCESS`$]")
     step = 0
     Mission = 0
     return true
