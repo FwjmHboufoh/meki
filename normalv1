@@ -3029,6 +3029,37 @@ elseif var[1]:find("add_label_with_icon|big|`wExperimental Salvage") then
     Drone()
     return true
     end
+elseif var[1]:find("add_label_with_icon|big|`wMiner Rescue") then
+    if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
+    if var[1]:find("Skill Success") then
+    step = step + 1
+    if step == 1 then
+    Drone()
+    elseif step == 2 or step == 4 or step == 5 then
+    Teleporter()
+    elseif step == 3 then
+    Scan()
+    end
+    elseif var[1]:find("Skill Fail") then
+    if step == 0 then
+    Gala()
+    elseif step == 1 then
+    Drone()
+    elseif step == 2 or step == 4 or step == 5 then
+    Teleporter()
+    elseif step == 3 then
+    Scan()
+    end
+    end
+    return true
+    else
+        step = 0
+    if Mission == 0 then
+    logToConsole("`b[`9MISSION`b] `6Miner Rescue")
+    end
+    Gala()
+    return true
+    end
     elseif var[1]:find("add_label_with_icon|big|`wScientific Outpost Delivery") then
     if var[1]:find("Skill Success") or var[1]:find("Skill Fail") then
     if var[1]:find("Skill Success") then
