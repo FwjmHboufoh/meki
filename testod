@@ -1,0 +1,456 @@
+non = "no"
+land = "no"
+
+if non=="yes" then
+else
+    non="no"
+end
+
+if land=="yes" then
+else
+    land="no"
+end
+
+
+          
+
+    function usetool(tool)
+        if tool == "brain" then
+            toolid = "tool6520"
+            logToConsole("`0Used Tool `1[AI Brain]")
+        elseif tool == "diplo" then
+            toolid = "tool6538"
+            logToConsole("`0Used Tool `1[Diploma]")
+        elseif tool == "bolt" then
+            toolid = "tool6522"
+            logToConsole("`0Used Tool `1[Bolt]")
+        elseif tool == "giga" then
+            toolid = "tool6528"
+            logToConsole("`0Used Tool `1[Gigablaster]")
+        elseif tool == "torp" then
+            toolid = "tool6540"
+            logToConsole("`0Used Tool `1[Torpedo]")
+        elseif tool == "shield" then
+            toolid = "tool6518"
+            logToConsole("`0Used Tool `1[Shield]")
+        elseif tool == "scan" then
+            toolid = "tool6530"
+            logToConsole("`0Used Tool `1[Scanner]")
+        elseif tool == "med" then
+            toolid = "tool6524"
+            logToConsole("`0Used Tool `1[Medical]")
+        elseif tool == "supp" then
+            toolid = "tool6536"
+            logToConsole("`0Used Tool `1[Supplier]")
+        elseif tool == "doc" then
+            toolid = "tool6534"
+            logToConsole("`0Used Tool `1[Document]")
+        elseif tool == "dron" then
+            toolid = "tool6532"
+            logToConsole("`0Used Tool `1[Drone]")
+        elseif tool == "tele" then
+            toolid = "tool6526"
+            logToConsole("`0Used Tool `1[Teleport]")
+        elseif tool == "start" then
+            toolid = "beginvoyage"
+            logToConsole("`#[Mission Start !!!]")
+        elseif tool == "end" then
+            toolid = "finishmission"
+            logToConsole("`2[Mission Success !!!]")
+        elseif tool == "next" then
+            toolid = "newsector"
+            logToConsole("`2Go to Next Sector !!!")
+        elseif tool == "land" then
+            toolid = "landonplanet"
+            logToConsole("`2Landing Plannet !!!")
+        end
+        sendPacket(2, "action|dialog_return\ndialog_name|startopia\nbuttonClicked|" .. toolid)
+    end    
+
+function start(var)
+        function mission()
+            jumlah = #tools
+            if fail == "yes" then
+                x = x - 1
+                usetool(tools[x])
+                x = x + 1
+            elseif fail == "no" then
+                usetool(tools[x])
+                x = x + 1
+            end
+            if jumlah - x == 1 then
+                check = "no"
+            end
+        end
+       
+       
+
+
+        if var[0]:find("OnDialogRequest") then
+if var[1]:find("Starship Reactor") then
+fuel=var[1]:match("Star Fuel:|(%d+)")
+sendPacket(2,"action|dialog_return\ndialog_name|startopia\nbuttonClicked|refillStarFuel\n\nrefillStarFuelAmount|"..fuel)
+end
+
+
+      
+              
+            
+       
+
+        if var[1]:find("Skill Success") then
+            fail = "no"
+            logToConsole("`2[Success]")
+        elseif var[1]:find("Skill Fail") then
+            fail = "yes"
+            logToConsole("`4[Fail]")
+        end
+
+        if var[1]:find("Not Enough Star Tools!") then
+            logToConsole("`4No Enought Tools to Start !!!")
+        elseif var[1]:find("Not enough Star Fuel") then
+            logToConsole("`4Not Enough Star Fuel to Start !!!")
+        elseif land=="yes" and var[1]:find("landonplanet|I") then
+fail = "no"
+            x = 1
+            jumlah = 0
+            check = "yes"
+         
+            usetool("land")
+            
+  elseif var[1]:find("|newsector|Enter .+!") and next=="yes" and var[1]:match("|newsector|Enter (.+)!") ~= "The Galactic Nexus" then
+           
+                usetool("next")
+           
+        elseif var[1]:find("Begin a Star Voyage") then
+            fail = "no"
+            x = 1
+            jumlah = 0
+            check = "yes"
+            usetool("start")
+        end
+
+        if var[1]:find("Ready in 5 turns") then
+            misi = var[1]:match("|big|`w(.+)``|left|%d+|")
+            logToConsole("`cMission Name `c[`#" .. misi .. "`c]")
+        end
+
+        if var[1]:find("It is a good day to flee!") then
+            logToConsole("`4Mission Fail !")
+          pkt={}
+pkt.type=3
+pkt.value=32
+pkt.tilex=getLocal().pos.x//32
+pkt.tiley=getLocal().pos.y//32
+pkt.x=getLocal().pos.x
+pkt.y=getLocal().pos.y
+sendPacketRaw(false,pkt)
+
+
+        elseif var[1]:find("The voyage continues!") then
+            usetool("end")
+           pkt={}
+pkt.type=3
+pkt.value=32
+pkt.tilex=getLocal().pos.x//32
+pkt.tiley=getLocal().pos.y//32
+pkt.x=getLocal().pos.x
+pkt.y=getLocal().pos.y
+sendPacketRaw(false,pkt)
+        elseif
+            (var[1]:find("The light throughout") or var[1]:find("The crew is getting lightheaded") or
+                var[1]:find("getting really dark and hard to see") or
+                var[1]:find("The main cargo bay door") or
+                var[1]:find("One of the crew looks out") or
+                var[1]:find("s a toxic gas here") or
+                var[1]:find("Things are getting backed up")) and
+                (check == "yes")
+         then
+            usetool("bolt")
+        elseif
+            (var[1]:find("Silicoid Worms attach") or var[1]:find("The shield generators have malfunctioned") or
+                var[1]:find("chewed up here")) and
+                (check == "yes")
+         then
+            usetool("shield")
+        elseif (var[1]:find("The crew is taking damage") or var[1]:find("sickening our crew")) and check == "yes" then
+            usetool("med")
+        elseif
+            (var[1]:find("Pirates are hacking our computer systems") or var[1]:find("Every screen throughout") or
+                var[1]:find("A malware virus has gotten into")) and
+                check == "yes"
+         then
+            usetool("brain")
+        elseif
+            (var[1]:find("Your communicator bursts into life.") or var[1]:find("Apparently, we've insulted") or
+                var[1]:find("gotten into your crew")) and
+                check == "yes"
+         then
+            usetool("diplo")
+        elseif
+            (var[1]:find("Several disloyal crew decide") or var[1]:find("The parasite swarms are taking a toll") or
+                var[1]:find("SPACE BARKS") or
+                var[1]:find("SPACE SNAKES") or
+                var[1]:find("Rogue aliens have boarded us") or
+                var[1]:find("The smugglers are putting") or
+                var[1]:find("a snack food abomination")) and
+                check == "yes"
+         then
+            usetool("giga")
+        elseif (var[1]:find("as if our current issues weren")) and check == "yes" then
+            usetool("doc")
+        elseif
+            (var[1]:find("A wing of pirate") or var[1]:find("the Torpedoes") or var[1]:find("a grinding sound coming") or
+                var[1]:find("A rogue fighter has")) and
+                check == "yes"
+         then
+            usetool("torp")
+        elseif (var[1]:find(" it falls to us to help")) and check == "yes" then
+            usetool("supp")
+        elseif var[1]:find("Set a Course") then
+            tools = {"dron", "doc"}
+            mission()
+        elseif
+            (var[1]:find("Parasite Hunt") or var[1]:find("Rebel Hunt") or var[1]:find("Bug Hunt") or
+                var[1]:find("Xenoid Hunt") or
+                var[1]:find("Spider Hunt") or
+                var[1]:find("Smuggler Hunt") or
+                var[1]:find("Hive Hunt") or
+                var[1]:find("Pirate Hunt") or
+                var[1]:find("Greezak Hunt") or
+                var[1]:find("Robot Hunt")) and non=="no"
+         then
+            tools = {"dron", "tele", "scan", "giga", "tele"}
+            mission()
+        elseif
+            (var[1]:find("Literary Data") or var[1]:find("Warp Data") or var[1]:find("Pilot Data") or
+                var[1]:find("Warfare Data") or
+                var[1]:find("Storm Data") or
+                var[1]:find("Collision Data") or
+                var[1]:find("Asteroid Data") or
+                var[1]:find("Skeleton Data") or
+                var[1]:find("Cargo Data") or
+                var[1]:find("Moon Data") or
+                var[1]:find("Energy Data") or
+                var[1]:find("Devastation Data") or
+                var[1]:find("Radiation Data") or
+                var[1]:find("Weapons Data") or
+                var[1]:find("Relic Data") or
+                var[1]:find("Mineral Data") or
+                var[1]:find("Weird Contraption") or
+                var[1]:find("Debris Data")) and non=="no"
+         then
+            tools = {"dron", "tele", "scan", "tele", "doc"}
+            mission()
+        elseif
+            (var[1]:find("Alien Attack") or var[1]:find("Mafia Attack") or var[1]:find("Greezak Attack") or
+                var[1]:find("Xenoid Attack") or
+                var[1]:find("Robot Attack") or
+                var[1]:find("Smuggler Attack") or
+                var[1]:find("Pirate Attack") or
+                var[1]:find("Volcanix Attack") or
+                var[1]:find("Robot Attack") or
+                var[1]:find("Junker Attack") or
+                var[1]:find("Rebel Attack"))
+         then
+            tools = {"dron", "shield", "torp", "torp"}
+            mission()
+        elseif
+            (var[1]:find("Asteroid Rescue") or var[1]:find("Cargo Ship Rescue") or var[1]:find("Mining Colony Rescue") or
+                var[1]:find("Space Station Rescue") or
+                var[1]:find("Moon Rescue")) and non=="no"
+         then
+            tools = {"dron", "tele", "diplo", "med", "doc"}
+            mission()
+ elseif
+            (var[1]:find("Space Station Extermination") or var[1]:find("Moon Extermination") or
+                var[1]:find("Cargo Ship Extermination") or
+                var[1]:find("Mining Colony Extermination")) and non=="no"
+         then
+            tools = {"dron", "tele", "scan", "supp", "giga", "doc"}
+            mission()
+        elseif var[1]:find("A Challenge") then
+            tools = {"dron", "shield", "shield", "shield", "shield"}
+            mission()
+        elseif var[1]:find("Outpost Attack") and non=="no" then
+            tools = {"dron", "torp", "diplo", "tele", "doc", "tele"} 
+            mission()
+        elseif var[1]:find("Solar Impact") then
+            tools = {"shield", "bolt", "med", "brain", "dron"}
+            mission()
+        elseif var[1]:find("Starachnid Attack") then
+            tools = {"dron", "torp", "supp", "torp", "giga"}
+            mission()
+        elseif var[1]:find("Windy Days") and non=="no" then
+            tools = {"dron", "tele", "scan", "tele"}
+            mission()
+        elseif var[1]:find("Miner Rescue") and non=="no" then
+            tools = {"bolt", "dron", "tele", "scan", "tele", "tele"}
+            mission()
+        elseif var[1]:find("Hunter and Prey") and non=="no" then
+            tools = {"dron", "brain", "tele", "giga", "tele"}
+            mission()
+        elseif var[1]:find("Life Pod") and non=="no" then
+            tools = {"tele", "scan", "med", "supp"}
+            mission()
+        elseif var[1]:find("Ancient Temple") then
+            tools = {"dron", "diplo", "supp", "doc"}
+            mission()
+        elseif var[1]:find("Dark Ship") and non=="no" then
+            tools = {"dron", "tele", "brain", "torp", "torp"}
+            mission()
+        elseif var[1]:find("Experimental Salvage") and non=="no" then
+            tools = {"dron", "tele", "tele", "tele"}
+            mission()
+        elseif var[1]:find("Ship Rescue") and non=="no" then
+            tools = {"bolt", "dron", "tele", "scan", "med", "tele"}
+            mission()
+        elseif var[1]:find("Bad Taste") and non=="no"  then
+            tools = {"tele", "diplo", "doc", "giga"}
+            mission()
+        elseif var[1]:find("A Strange One") then
+            tools = {"dron", "diplo", "bolt", "brain", "doc"}
+            mission()
+        elseif var[1]:find("Skeleton Crew") and non=="no" then
+            tools = {"tele", "scan", "brain", "doc"}
+            mission()
+        elseif var[1]:find("Tasty Cakes") and non=="no" then
+            tools = {"dron", "tele", "scan", "brain", "scan", "giga", "tele"}
+            mission()
+        elseif var[1]:find("Ghost Ship") and non=="no" then
+            tools = {"dron", "tele", "scan", "diplo", "doc", "tele"}
+            mission()
+        elseif var[1]:find("Giant Skeleton") then
+            tools = {"dron", "brain", "shield", "supp"}
+            mission()
+        elseif var[1]:find("Cryonite Crisis") and non=="no" then
+            tools = {"tele", "scan", "giga", "scan", "brain", "brain", "shield", "doc", "tele"}
+            mission()
+        elseif var[1]:find("Pit o") and non=="no" then
+            tools = {"dron", "tele", "scan", "giga", "tele", "torp"}
+            mission()
+        elseif var[1]:find("Close Encounter") then
+            tools = {"dron", "brain", "diplo", "diplo", "scan", "brain"}
+            mission()
+        elseif var[1]:find("One Angry Ship") and non=="no" then
+            tools = {"dron", "torp", "diplo", "tele", "doc", "tele"}
+            mission()
+        elseif var[1]:find("Boarding Party") then
+            tools = {"scan", "giga", "giga"}
+            mission()
+        elseif var[1]:find("Taking Aim") and non=="no" then
+            tools = {"dron", "tele", "giga", "tele"}
+            mission()
+        elseif var[1]:find("Junk Punks") then
+            tools = {"brain", "dron", "torp", "brain"}
+            mission()
+        elseif var[1]:find("Escape Pod") and non=="no" then
+            tools = {"dron", "shield", "tele", "scan", "giga", "med", "scan", "tele", "torp"}
+            mission()
+        elseif var[1]:find("Mining Colony Rescue") and non=="no" then
+            tools = {"dron", "tele", "diplo", "med", "doc"}
+            mission()
+        elseif var[1]:find("Mining Colony Delivery") and non=="no" then
+            tools = {"dron", "tele", "scan", "giga", "supp", "tele"}
+            mission()
+        elseif
+            var[1]:find("Xenoid Duel") or var[1]:find("Pirate Duel") or var[1]:find("Raider Duel") or
+                var[1]:find("Rebel Duel") or
+                var[1]:find("Junker Duel")
+         then
+            tools = {"dron", "shield", "torp", "brain", "torp"}
+            mission()
+       
+        elseif var[1]:find("Shadow Stalkers") and non=="no" then
+            tools = {"dron", "tele", "scan", "brain", "giga", "tele", "scan", "tele", "torp"}
+            mission()
+        elseif var[1]:find("Planet Calamity") and non=="no" then
+            tools = {"dron", "tele", "brain", "tele", "shield", "torp", "tele"}
+            mission()
+        elseif (var[1]:find("Scientific Outpost Delivery") or var[1]:find("Missile Base Delivery")) and non=="no" then
+            tools = {"dron", "tele", "scan", "giga", "supp", "tele"}
+            mission()
+        elseif ((var[1]:find("Who") and var[1]:find("s there")) or var[1]:find("s Gonna Blow")) and non=="no" then
+            tools = {"dron", "tele", "scan", "brain", "scan", "giga", "tele"}
+            mission()
+        elseif (var[1]:find("Doing the right thing") or var[1]:find("Secret Stash")) and non=="no" then
+            tools = {"dron", "shield", "tele", "giga", "scan", "tele"}
+            mission()
+        elseif (var[1]:find("Putting Down Roots")) and non=="no" then
+            tools = {"dron", "tele", "scan", "diplo", "doc", "supp"}
+            mission()
+        elseif var[1]:find("Daydreamer") and non=="no" then
+            tools = {"dron", "tele", "diplo", "giga"}
+            mission()
+        elseif var[1]:find("Salvage Run") and non=="no" then
+            tools = {"dron", "tele", "scan", "tele"}
+            mission()
+        elseif var[1]:find("A Tasty Bite") then
+            tools = {"dron", "diplo", "bolt", "scan", "brain", "bolt", "torp"}
+            mission()
+
+        elseif var[1]:find("Planet of Echoes") and non=="no" then
+            tools = {"dron", "diplo", "tele", "scan", "giga", "tele"}
+            mission()
+        elseif var[1]:find("Prevent War") and non=="no" then
+            tools = {"shield", "dron", "diplo", "tele", "doc", "bolt", "supp"}
+            mission()
+        elseif var[1]:find("Stuck in the Middle") then
+            tools = {"dron", "shield", "brain", "diplo", "brain"}
+            mission()
+        elseif var[1]:find("Space Detective") and non=="no" then
+            tools = {"dron", "tele", "doc", "torp"}
+            mission()
+        elseif var[1]:find("Doctor in the House") and non=="no" then
+            tools = {"dron", "tele", "diplo", "med", "giga", "diplo"}
+            mission()
+        elseif
+            var[1]:find("Space Junk Cleanup") or var[1]:find("Asteroid Cleanup") or var[1]:find("Radiation Cleanup") or
+                var[1]:find("Rocket Parts Cleanup")
+         then
+            tools = {"dron", "shield", "torp", "shield", "doc"}
+            mission()
+        elseif var[1]:find("Gross Mistake") and non=="no" then
+            tools = {"dron", "tele", "scan", "giga", "supp", "tele"}
+            mission()
+        elseif var[1]:find("Blackout") then
+            tools = {"bolt", "dron", "shield", "torp", "torp", "bolt"}
+            mission()
+        elseif var[1]:find("Lonely Little Droid") and non=="no" then
+            tools = {"diplo", "tele", "supp", "scan", "giga"}
+            mission()
+        elseif var[1]:find("Doing the Job") and non=="no" then
+            tools = {"dron", "diplo", "tele", "supp", "doc", "tele"}
+            mission()
+        elseif var[1]:find("Space Opera") and non=="no" then
+            tools = {"dron", "tele", "diplo", "diplo", "giga", "doc"}
+            mission()
+        elseif var[1]:find("Moon Base Delivery") and non=="no" then
+            tools = {"dron", "tele", "scan", "giga", "supp", "tele"}
+            mission()
+        elseif var[1]:find("A New Home") and non=="no" then
+
+            tools = {"dron", "diplo", "torp", "diplo", "supp", "med", "shield", "torp", "diplo"}
+
+            mission()
+elseif var[1]:find("Ready in 5 turns") and non=="yes" then
+pkt = {}
+            pkt={}
+pkt.type=3
+pkt.value=32
+pkt.tilex=getLocal().pos.x//32
+pkt.tiley=getLocal().pos.y//32
+pkt.x=getLocal().pos.x
+pkt.y=getLocal().pos.y
+sendPacketRaw(false,pkt)
+            sendPacketRaw(false, pkt)
+
+
+        end
+        return true
+    end
+
+        return false
+    end
+
+    AddHook("onVarlist","1",start)
