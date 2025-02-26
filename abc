@@ -42,6 +42,7 @@ end_dialog|darknessgazzete|| FUCK |
 ]]
 end
 
+funtion hook(type, pkt)
 if str:find('/test') then
     sendVariant({ 
         [0] = 'OnDialogRequest',
@@ -49,7 +50,6 @@ if str:find('/test') then
     }, -1, 10)
 return true 
 end
-
 if str:find('buttonClicked|_1') then 
     if not gems then 
         gems, reme, qeme, leme, casino = true, false, false, false, false
