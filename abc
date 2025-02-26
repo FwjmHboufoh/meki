@@ -27,4 +27,4 @@ function hook(type,pkt)
         end
     end
 end
-AddHoook("OnTextPacket", "abcd", hook)
+AddHook("OnTextPacket", "abcd", hook)
