@@ -52,5 +52,4 @@ if pkt:find("action|input\n|text|") then
         return true
     end
 end
-end
 AddHook("OnTextPacket", "aaa", hook)
