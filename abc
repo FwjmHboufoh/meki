@@ -1,6 +1,6 @@
 typ = "y"
 
-funtion OnDialogRequest()
+function OnDialogRequest()
 local var = {}
 var[0] = "OnDialogRequest"
 var[1] = [[set_default_colour|`O
@@ -11,7 +11,7 @@ end_dialog|set_tele|Cancel|OK|
 sendVariant(var,-1,350)
 end
 
-funtion abc()
+function abc()
 if typ:find("y") then
     logToConsole("y")
 elseif typ:find("n") then
