@@ -25,9 +25,6 @@ function hook(type,pkt)
             OnDialogRequest()
             return true
         end
-    elseif pkt:find(dialog_name|set_tele) then
-        typ = string.lower(pkt:match("\nTele|(%w+)\n"))
-        return true
     end
 end
 AddHoook("OnTextPacket", "abcd", hook)
