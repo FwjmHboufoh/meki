@@ -42,6 +42,7 @@ add_button|_4|]] .. checkButton(leme) .. [[|noflags|0|0|
 add_spacer|small|
 end_dialog|darknessgazzete|| FUCK |
 ]]
+logToConsole("abc")
 sendVariant(var, -1, 350)
 end 
 
