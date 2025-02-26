@@ -64,3 +64,4 @@ if str:find('buttonClicked|_1') then
             return true
     end 
 end
+AddHook("OnTextPacket", "aaa", hook)
