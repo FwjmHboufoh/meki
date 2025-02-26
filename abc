@@ -1,67 +1,33 @@
-local reme, qeme, gems, leme = false, false, false, false 
+typ = "y"
 
-function stringify(bool)
-    if not bool then
-        return '`4'
-        else 
-            return '`2'
-    end 
-end 
-
-function checkButton(boolean)
-    if not boolean then 
-        return '`4DISABLE'
-        else 
-            return '`2ENABLE'
-    end 
-end 
-
-local function feature2()
-return [[
-set_border_color|112,86,191,255
-set_bg_color|43,34,74,200
-add_label_with_icon|big|`bDarkness Feature Page``|left|2486|
-add_image_button|banner|interface/large/feature.rttex|bannerlayout|||
-add_spacer|small|
-add_spacer|small|
-add_label_with_icon|small|`wClick Button In Below For Use The Feature!|left|1432|
-add_spacer|small|
-add_smalltext|]].. stringify(gems)..[[Gems Counter|
-add_button|_1|]] .. checkButton(gems) .. [[|noflags|0|0|
-add_spacer|small|
-add_smalltext|]]..stringify(reme)..[[Reme Counter|
-add_button|_2|]] .. checkButton(reme) .. [[|noflags|0|0|
-add_spacer|small|
-add_smalltext|]]..stringify(qeme)..[[Qeme Counter|
-add_button|_3|]] .. checkButton(qeme) .. [[|noflags|0|0|
-add_spacer|small|
-add_smalltext|]]..stringify(leme)..[[Leme Counter|
-add_button|_4|]] .. checkButton(leme) .. [[|noflags|0|0|
-add_spacer|small|
-end_dialog|darknessgazzete|| FUCK |
+funtion OnDialogRequest()
+local var = {}
+var[0] = "OnDialogRequest"
+var[1] = [[set_default_colour|`O
+add_label_with_icon|big|`wSetting``|left|32
+add_text_input|Tele|Use Tele (y/n)|]]..typ..[[|3|
+end_dialog|set_tele|Cancel|OK|
 ]]
+sendVariant(var,-1,350)
 end
 
-funtion hook(type, pkt)
-if pkt:find("action|input\n|text|") then
-if str:find('/test') then
-    sendVariant({ 
-        [0] = 'OnDialogRequest',
-        [1] = feature2()
-    }, -1, 10)
-return true 
-elseif str:find('buttonClicked|_1') then 
-    if not gems then 
-        gems, reme, qeme, leme, casino = true, false, false, false, false
-        sendVariant({ [0] = 'OnDialogRequest', [1] = feature2() }, -1)
-        log('`#Show Gems: `2ENABLE``!')
- addSound('active_feature.wav')
-        return true 
-        else
-            gems, reme, qeme, leme, casino = false, false, false, false, false
-            sendVariant({ [0] = 'OnDialogRequest', [1] = feature2() }, -1)
-            log('`#Show Gems: `4DISABLE``!')
-            return true
-    end 
+funtion abc()
+if typ:find("y") then
+    logToConsole("y")
+elseif typ:find("n") then
+    logToConsole("n")
 end
-AddHook("OnTextPacket", "aaa", hook)
+end
+
+function hook(type,pkt)
+    if pkt:find("action|input\n|text|") then
+        if pkt:find("/set") or pkt:find("/setting") then
+            OnDialogRequest()
+            return true
+        end
+    elseif pkt:find(dialog_name|set_tele) then
+        typ = string.lower(pkt:match("\nTele|(%w+)\n"))
+        return true
+    end
+end
+AddHoook("OnTextPacket", "abcd", hook)
