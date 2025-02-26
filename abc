@@ -48,7 +48,7 @@ end
 funtion hook(type, pkt)
 if pkt:find("action|input\n|text|") then
     if pkt:find("/test") then
-        feature2()
+        OnDialogRequest()
         return true
     end
 end
