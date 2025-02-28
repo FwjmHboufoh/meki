@@ -1,32 +1,28 @@
-typ = "y"
+local str = ''
 
-function OnDialogRequest()
-local var = {}
-var[0] = "OnDialogRequest"
-var[1] = [[set_default_colour|`O
-add_label_with_icon|big|`wSetting``|left|32
-add_text_input|Tele|Use Tele (y/n)|]]..typ..[[|3|
-end_dialog|set_tele|Cancel|OK|
+local function dialog()
+    return [[
+set_default_colour|`s 
+add_label_with_icon|big|`wSetting``|left|32|
+add_spacer|small|
+add_textbox|use tele (y/n)|left|
+add_text_input|tele_||]] .. str ..[[|3|
+end_dialog|sett|| Accept |
 ]]
-sendVariant(var,-1,350)
-end
+end 
 
-function abc()
-if typ:find("y") then
-    logToConsole("y")
-elseif typ:find("n") then
-    logToConsole("n")
-end
-end
-
-function hook(type,pkt)
-    if pkt:find("action|input\n|text|") then
-        if pkt:find("/set") or pkt:find("/setting") then
-            OnDialogRequest()
-            return true
-    elseif pkt:find(dialog_name|set_tele) then
-        typ = string.lower(pkt:match("\nTele|(%w+)\n"))
+AddHook('OnTextPacket', '-__-', function(x, pkt)
+    if pkt:find('/set') then
+        sendVariant({ [0] = 'OnDialogRequest', [1] = dialog() }, -1)
         return true
     end
-end
-AddHook("OnTextPacket", "abcd", hook)
+    if pkt:find('dialog_name|sett') then
+        local matches = string.lower(pkt:match('tele_|(%w+)'))
+        if matches then 
+            str = matches
+            logToConsole(' >> ' .. str)
+        end 
+        return true 
+    end 
+    return false 
+end )
