@@ -1,17 +1,1 @@
-function test()
-    return [[
-    add_label_with_icon|big|``Extra    |left|32|
-    text_scaling_string|iprogramtext
-    add_spacer|big|
-    add_checkbox|tele|Use Tele|]]..remeg..[[|
-    add_spacer|big|
-    end_dialog|lele|Close|Set|
-    ]]
-end
-
-AddHook('OnTextPacket', '-__-', function(x, pkt)
-    if pkt:find('/set') then
-        sendVariant({ [0] = 'OnDialogRequest', [1] = test() }, -1)
-        return true
-    end
-)
+...
