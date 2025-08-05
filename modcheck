@@ -277,9 +277,7 @@ function json.decode(str)
   end
   return res
 end
--- json.lua END
 
--- Fungsi makeRequest sesuai signature GentaHax
 function requestMods()
     local headers = {}
     local body = ""
@@ -288,7 +286,7 @@ function requestMods()
     local res = makeRequest("https://api.noire.my.id/api/mods", "GET", headers, body, timeout)
 
     if not res or not res.content then
-        logToConsole("[X] Gagal ambil data dari API.")
+        logToConsole("[X] Failed to retrieve data from API.")
         return nil
     end
 
@@ -298,12 +296,12 @@ end
 function checkMods(jsonString)
     local status, data = pcall(json.decode, jsonString)
     if not status then
-        logToConsole("[X] Gagal decode JSON: " .. tostring(data))
+        logToConsole("[X] Failed decode JSON: " .. tostring(data))
         return
     end
 
     if not data.mods or type(data.mods) ~= "table" then
-        logToConsole("[X] Data 'mods' tidak ditemukan di JSON.")
+        logToConsole("[X] Data 'mods' not found in JSON.")
         return
     end
 
