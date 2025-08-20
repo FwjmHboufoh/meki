@@ -12,10 +12,39 @@ else
 end
 
 
-local function sxT();for _, star in pairs(getTile()) do if star.fg == 6486 then local s, t = star.pos.x, star.pos.y if s and t then sendPacketRaw(false,{ type = 3, value = 32, punchx = s,	punchy = t,	x = getLocal().pos.x, y = getLocal().pos.y }) end 
-		end 
-	end
+local function sxT()
+    local tiles = getTile() 
+    local targetIDs = {6482, 6484, 6486} 
+    local found = false
+    local targets = {}
+
+    -- deteksi tile yang sesuai
+    for _, tile in pairs(tiles) do
+        for _, id in pairs(targetIDs) do
+            if tile.fg == id then
+                table.insert(targets, {x = tile.pos.x, y = tile.pos.y})
+                found = true
+                break
+            end
+        end
+    end
+
+    if found then
+        for _, t in pairs(targets) do
+            if t.x and t.y then
+                sendPacketRaw(false, {
+                    type = 3,
+                    value = 32,
+                    punchx = t.x,
+                    punchy = t.y,
+                    x = getLocal().pos.x,
+                    y = getLocal().pos.y
+                })
+            end
+        end
+    end
 end
+
           
 
     function usetool(tool)
