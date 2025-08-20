@@ -1,4 +1,4 @@
-non = "yes"
+non = "no"
 land = "no"
 
 if non=="yes" then
