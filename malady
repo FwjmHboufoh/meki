@@ -1,0 +1,30 @@
+local texts = {
+    "Evil Handsome.",
+    "NO DOUBT.",
+    "LOVE YOU.",
+}
+
+local delayMin = 5000
+local delayMax = 10000
+
+local stopScript = false
+math.randomseed(os.time())
+
+AddHook("OnVarlist", "meki", function(var)
+    if var[0]:find("OnConsoleMessage") then
+        if var[1]:match("Grumbleteeth") then
+            stopScript = true
+            log("⚠️ Script dihentikan karena kena malady Grumbleteeth!")
+        end
+    end
+end)
+
+while true do
+    if stopScript then break end
+
+    local msg = texts[math.random(1, #texts)]  
+    sendPacket(2, "action|input\n|text|" .. msg)
+
+    local delay = math.random(delayMin, delayMax)
+    sleep(delay)
+end
