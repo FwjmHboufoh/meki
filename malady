@@ -5,7 +5,7 @@ local texts = {
 }
 
 local delayMin = 5000
-local delayMax = 10000
+local delayMax = 7000
 
 local stopScript = false
 math.randomseed(os.time())
@@ -18,10 +18,19 @@ AddHook("OnVarlist", "meki", function(var)
     end
 end)
 
+local lastIndex = nil
+
 while true do
     if stopScript then break end
 
-    local msg = texts[math.random(1, #texts)]  
+    local idx
+    repeat
+        idx = math.random(1, #texts)
+    until idx ~= lastIndex
+
+    lastIndex = idx
+    local msg = texts[idx]
+
     sendPacket(2, "action|input\n|text|" .. msg)
 
     local delay = math.random(delayMin, delayMax)
