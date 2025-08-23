@@ -14,7 +14,6 @@ AddHook("OnVarlist", "meki", function(var)
     if var[0]:find("OnConsoleMessage") then
         if var[1]:match("Grumbleteeth") then
             stopScript = true
-            log("⚠️ Script dihentikan karena kena malady Grumbleteeth!")
         end
     end
 end)
