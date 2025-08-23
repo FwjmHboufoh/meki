@@ -4,8 +4,8 @@ local texts = {
     "LOVE YOU.",
 }
 
-local delayMin = 5000
-local delayMax = 7000
+local delayMin = 3000
+local delayMax = 5000
 
 local stopScript = false
 math.randomseed(os.time())
