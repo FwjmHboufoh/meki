@@ -1,0 +1,317 @@
+-- AUTO FISHING + AUTO TRASH / DROP
+-- Struktur: callback ringan + queue executor seperti Auto Surgery
+-- Deteksi hasil pancing dari OnConsoleMessage
+-- Proses trash/drop memakai state machine, tanpa sleep() di callback
+
+-- =========================================================
+-- CONFIG
+-- =========================================================
+
+local validBaits = {
+    [3012] = "Shiny",
+    [3014] = "Salmon Eggs",
+    [3016] = "Fishing Fly",
+    [3018] = "Shrimp Lure"
+}
+
+local trashItems = {
+    { id = 3036, name = "Sunfish",         threshold = 200 },
+    { id = 3030, name = "Dogfish",         threshold = 49  },
+    { id = 3032, name = "Gar",             threshold = 89  },
+    { id = 3038, name = "Bass",            threshold = 69  },
+    { id = 3026, name = "Catfish",         threshold = 29  },
+    { id = 3000, name = "Goldfish",        threshold = 14  },
+    { id = 3034, name = "Mahi Mahi",       threshold = 200 },
+    { id = 5548, name = "Absol",           threshold = 59  },
+    { id = 5542, name = "Double",          threshold = 59  },
+    { id = 5552, name = "Cuttlefish",      threshold = 119 },
+    { id = 5538, name = "Maidmare",        threshold = 159 },
+    { id = 5580, name = "Weird Manta Ray", threshold = 189 },
+    { id = 5574, name = "Alpha",           threshold = 189 },
+    { id = 3814, name = "StoneFish",       threshold = 159 },
+    { id = 3024, name = "Whale",           threshold = 199 },
+    { id = 4958, name = "SandShark",       threshold = 199 }
+}
+
+-- Delay dalam milidetik
+local REBAIT_DELAY = 1000
+local INVENTORY_INTERVAL = 1500
+
+-- =========================================================
+-- STATE
+-- =========================================================
+
+local activeBait = nil
+local baitX = nil
+local baitY = nil
+
+local scriptPlacing = false
+local placeResetAt = 0
+
+local pendingRebaitAt = nil
+local lastFishingResult = ""
+local processingFishing = false
+
+local nextInventoryCheck = 0
+local itemJob = nil
+
+-- =========================================================
+-- UTILITY
+-- =========================================================
+
+local function nowMs()
+    return getCurrentTimeInternal()
+end
+
+local function logMessage(message)
+    logToConsole("`o[Auto Fishing]`w " .. tostring(message))
+end
+
+local function checkItemAmount(invData, itemID)
+    if not invData then
+        return 0
+    end
+
+    for _, item in pairs(invData) do
+        if item.id == itemID then
+            return item.amount or 0
+        end
+    end
+
+    return 0
+end
+
+-- =========================================================
+-- FISHING
+-- =========================================================
+
+local function placeBait()
+    if activeBait == nil then return end
+    if baitX == nil or baitY == nil then return end
+    if scriptPlacing then return end
+
+    local localPlayer = getLocal()
+    if not localPlayer or not localPlayer.pos then
+        return
+    end
+
+    scriptPlacing = true
+    placeResetAt = nowMs() + 300
+
+    sendPacketRaw(false, {
+        type = 3,
+        value = activeBait,
+        x = localPlayer.pos.x,
+        y = localPlayer.pos.y,
+        punchx = baitX,
+        punchy = baitY
+    })
+
+    logMessage("Memasang " .. validBaits[activeBait])
+end
+
+local function scheduleRebait(resultMessage)
+    if activeBait == nil then return end
+
+    -- Hindari menjadwalkan rebait berulang saat pesan yang sama masuk.
+    if pendingRebaitAt ~= nil then return end
+
+    pendingRebaitAt = nowMs() + REBAIT_DELAY
+    lastFishingResult = resultMessage
+end
+
+-- Hook untuk mendeteksi pemasangan bait manual dan hasil memancing.
+AddHook("onvarlist", "FishingResult", function(var)
+    if not var then return end
+
+    local eventName = var[0]
+    local message = var[1] or ""
+
+    if eventName ~= "OnConsoleMessage" then
+        return
+    end
+
+    if message:find("You caught", 1, true) then
+        scheduleRebait(message)
+        return
+    end
+
+    if message:find("There was nothing on the line!", 1, true) then
+        scheduleRebait(message)
+        return
+    end
+end)
+
+-- Hook packet untuk menyimpan jenis bait dan posisi target
+AddHook("OnGameUpdatePacket", "FishingPacket", function(packet)
+    if not packet then return end
+
+    -- Type 3: simpan bait yang dipasang secara manual.
+    if packet.type == 3 and not scriptPlacing then
+        local baitID = packet.value
+
+        if validBaits[baitID] then
+            activeBait = baitID
+            baitX = packet.punchx
+            baitY = packet.punchy
+
+            pendingRebaitAt = nil
+            processingFishing = false
+
+            logMessage(
+                "Bait aktif: " .. validBaits[activeBait]
+                .. " | Target: " .. tostring(baitX)
+                .. ", " .. tostring(baitY)
+            )
+        end
+    end
+end)
+
+-- =========================================================
+-- TRASH / DROP JOB
+-- Tidak menggunakan sleep(); setiap tahap diproses executor.
+-- =========================================================
+
+local function startItemJob(itemID, amount, action)
+    if itemJob ~= nil then return end
+    if amount <= 0 then return end
+
+    itemJob = {
+        id = itemID,
+        amount = amount,
+        action = action,
+        stage = 1,
+        nextAt = nowMs()
+    }
+
+    logMessage(
+        string.upper(action) .. " item " .. itemID
+        .. " x" .. amount
+    )
+end
+
+local function processItemJob()
+    if itemJob == nil then return end
+    if nowMs() < itemJob.nextAt then return end
+
+    local job = itemJob
+
+    if job.action == "trash" then
+        if job.stage == 1 then
+            sendPacket(2, "action|trash\nitemID|" .. job.id)
+
+            job.stage = 2
+            job.nextAt = nowMs() + 400
+            return
+        end
+
+        if job.stage == 2 then
+            sendPacket(
+                2,
+                "action|dialog_return\n"
+                .. "dialog_name|trash_item\n"
+                .. "itemID|" .. job.id .. "\n"
+                .. "count|" .. job.amount
+            )
+
+            job.stage = 3
+            job.nextAt = nowMs() + 500
+            return
+        end
+
+        if job.stage == 3 then
+            logMessage("Selesai trash ID " .. job.id)
+            itemJob = nil
+            nextInventoryCheck = nowMs() + 500
+            return
+        end
+
+    elseif job.action == "drop" then
+        if job.stage == 1 then
+            sendPacket(2, "action|drop\nitemID|" .. job.id)
+
+            job.stage = 2
+            job.nextAt = nowMs() + 600
+            return
+        end
+
+        if job.stage == 2 then
+            sendPacket(
+                2,
+                "action|dialog_return\n"
+                .. "dialog_name|drop_item\n"
+                .. "itemID|" .. job.id .. "\n"
+                .. "count|" .. job.amount
+            )
+
+            job.stage = 3
+            job.nextAt = nowMs() + 800
+            return
+        end
+
+        if job.stage == 3 then
+            logMessage("Selesai drop ID " .. job.id)
+            itemJob = nil
+            nextInventoryCheck = nowMs() + 500
+            return
+        end
+    end
+
+    -- Pengaman jika action tidak dikenal.
+    if job.action ~= "trash" and job.action ~= "drop" then
+        itemJob = nil
+    end
+end
+
+local function scanInventory()
+    if itemJob ~= nil then return end
+    if nowMs() < nextInventoryCheck then return end
+
+    nextInventoryCheck = nowMs() + INVENTORY_INTERVAL
+
+    local inventory = getInventory()
+    if not inventory then return end
+
+    for _, fish in ipairs(trashItems) do
+        local amount = checkItemAmount(inventory, fish.id)
+
+        if amount > 0 then
+            if amount <= fish.threshold then
+                startItemJob(fish.id, amount, "trash")
+            else
+                startItemJob(fish.id, amount, "drop")
+            end
+
+            -- Satu item per job supaya tidak mengirim banyak dialog sekaligus.
+            return
+        end
+    end
+end
+
+-- =========================================================
+-- QUEUE EXECUTOR — pola seperti Auto Surgery
+-- =========================================================
+
+AddHook("OnRender", "AutoFishingExecutor", function()
+    local currentTime = nowMs()
+
+    -- Reset flag pemasangan tanpa sleep di callback.
+    if scriptPlacing and currentTime >= placeResetAt then
+        scriptPlacing = false
+    end
+
+    -- Rebait setelah menerima hasil pancing.
+    if pendingRebaitAt ~= nil and currentTime >= pendingRebaitAt then
+        pendingRebaitAt = nil
+        processingFishing = false
+        placeBait()
+    end
+
+    -- Jalankan trash/drop secara bertahap.
+    processItemJob()
+
+    -- Scan inventory hanya saat tidak ada job aktif.
+    scanInventory()
+end)
+
+logMessage("Script aktif. Pasang bait secara manual untuk mulai.")
